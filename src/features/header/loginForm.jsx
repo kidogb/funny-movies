@@ -55,12 +55,11 @@ export function LoginForm({ onLogin = () => { } }) {
                                 form.getFieldsError().filter(({ errors }) => errors.length).length
                             }
                         >
-                            Log in
+                            Login/Register
                         </Button>
                     )}
                 </Form.Item>
             </Form>
         </div>
-
     );
 }
