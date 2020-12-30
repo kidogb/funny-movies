@@ -10,6 +10,9 @@ function App() {
         <PageHeader />
       </header>
       <VideosPage />
+      <footer style={{ minHeight: '2vh' }}>
+
+      </footer>
     </React.Fragment>
   );
 }
