@@ -10,7 +10,7 @@ router.get('/list', function (req, res) {
     const skip = page * pageSize;
     // compute the limit parameter for MySQL query
     const limit = skip + ',' + pageSize;
-    let sql = `SELECT v.id as video_id, v.title, v.description, v.url, u.id as user_id ,u.username FROM user_video uv JOIN video v ON v.id = uv.video_id JOIN user u ON uv.user_id=u.id  LIMIT ${limit};`;
+    let sql = `SELECT v.id as video_id, v.title, v.description, v.url, u.id as user_id ,u.username FROM user_video uv JOIN video v ON v.id = uv.video_id JOIN user u ON uv.user_id=u.id ORDER BY v.id DESC LIMIT ${limit};`;
     db.query('SELECT count(*) as totalVideo FROM video;', function (err, data) {
         if (err) throw err;
         totalVideo = data[0].totalVideo;
