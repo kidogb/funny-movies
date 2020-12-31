@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Form, Input, Button } from 'antd';
 import { ShareAltOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';

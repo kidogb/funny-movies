@@ -25,7 +25,7 @@ export const userSlice = createSlice({
 });
 
 export const loginAsync = payload => dispatch => {
-  const res = loginOrRegister(payload).then(res => {
+  loginOrRegister(payload).then(res => {
     if (res && res.status && res.status === 200) {
       notification['success']({
         message: 'Success',

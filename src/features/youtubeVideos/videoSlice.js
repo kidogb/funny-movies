@@ -18,7 +18,7 @@ export const videoSlice = createSlice({
 });
 
 export const fetchVideoAsync = payload => dispatch => {
-  const res = fetchVideo(payload).then(res => {
+  fetchVideo(payload).then(res => {
     if (res && res.status && res.status === 200) {
       // notification['success']({
       //   message: 'Success',
@@ -37,7 +37,7 @@ export const fetchVideoAsync = payload => dispatch => {
 };
 
 export const shareVideoAsync = payload => dispatch => {
-  const res = shareVideo(payload).then(res => {
+  shareVideo(payload).then(res => {
     if (res && res.status && res.status === 200) {
       notification['success']({
         message: 'Success',

@@ -4,7 +4,7 @@ import { ShareAltOutlined, LogoutOutlined } from '@ant-design/icons';
 
 import 'antd/dist/antd.css';
 import { ShareForm } from './shareForm';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { shareVideoAsync } from './../youtubeVideos/videoSlice';
 
 

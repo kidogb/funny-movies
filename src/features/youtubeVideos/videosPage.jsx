@@ -11,7 +11,7 @@ export function VideosPage() {
 
     useEffect(() => {
         dispatch(fetchVideoAsync({ page: 0 }));
-    }, []);
+    });
 
     const onPageChange = (page) => {
         dispatch(fetchVideoAsync({ page: page - 1 }));
@@ -19,7 +19,7 @@ export function VideosPage() {
     const { data, pagination } = videos;
     return (
         <div>
-            {data && data.map(v => <VideoDetail videoDetails={v} />)}
+            {data && data.map(v => <div key={`video-${v.video_id}`}><VideoDetail videoDetails={v} /></div>)}
             {pagination &&
                 <div className={style.center}>
                     <Pagination
