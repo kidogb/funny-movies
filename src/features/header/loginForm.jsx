@@ -12,8 +12,7 @@ export function LoginForm({ onLogin = () => { } }) {
     }, []);
 
     const onFinish = values => {
-        console.log('Finish: ', values);
-        onLogin();
+        onLogin(values);
     }
     return (
         <div id='login' style={{ marginTop: '1%' }}>

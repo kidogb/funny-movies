@@ -2,20 +2,23 @@ import React, { useState } from 'react';
 import { LoginForm } from './loginForm';
 import { Row, Col, Image } from 'antd';
 import { WelcomeHeader } from './welcomeHeader';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginAsync, logout, selectUser } from './userSlice';
+
 import logo from './../../logo.svg';
 import style from './pageHeader.module.css';
 
 export function PageHeader() {
-    const [isLoggedIn, setLoginStatus] = useState(false);
+    const dispatch = useDispatch();
 
-    const onLoginSubmit = () => {
-        console.log("Call api login success");
-        setLoginStatus(true);
+    const user = useSelector(selectUser);
+
+    const onLoginSubmit = (value) => {
+        dispatch(loginAsync(value));
     }
 
     const onLogoutSubmit = () => {
-        console.log("Call api logout success");
-        setLoginStatus(false);
+        dispatch(logout());
     }
 
     return (
@@ -26,7 +29,7 @@ export function PageHeader() {
                 </Col>
                 <Col span={10}></Col>
                 <Col span={10}>
-                    {isLoggedIn ? <WelcomeHeader onLogout={onLogoutSubmit} /> : <LoginForm onLogin={onLoginSubmit} />}
+                    {user.id ? <WelcomeHeader user={user} onLogout={onLogoutSubmit} /> : <LoginForm onLogin={onLoginSubmit} />}
                 </Col>
             </Row>
 

@@ -1,16 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { VideoDetail } from './videoDetails';
 import { Pagination } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchVideoAsync, selectVideo } from './videoSlice';
 import style from './videosPage.module.css';
 
-export function VideosPage({ videos = [1, 2, 3, 4, 5] }) {
-    const user = { userName: "kidogb" };
-    const des = "Testing video. This video is amazing gut chop!!\r\n Welcome to my app!! Testing video. This video is amazing gut chop!!\r\n Welcome to my app!! Testing video. This video is amazing gut chop!!\r\n Welcome to my app!!";
-    const videoDetails = { title: "Welcome", descriptions: des };
+export function VideosPage() {
+    const dispatch = useDispatch();
+    const videos = useSelector(selectVideo);
+
+    useEffect(() => {
+        dispatch(fetchVideoAsync({ page: 0 }));
+    }, []);
+
+    const onPageChange = (page) => {
+        dispatch(fetchVideoAsync({ page: page - 1 }));
+    }
+    const { data, pagination } = videos;
     return (
         <div>
-            {videos.map(v => <VideoDetail user={user} videoDetails={videoDetails} />)}
-            <div className={style.center}><Pagination defaultCurrent={1} total={50} /></div>
+            {data && data.map(v => <VideoDetail videoDetails={v} />)}
+            {pagination &&
+                <div className={style.center}>
+                    <Pagination
+                        defaultCurrent={1}
+                        current={pagination.current + 1}
+                        pageSize={pagination.pageSize}
+                        total={pagination.total}
+                        onChange={onPageChange}
+                    />
+                </div>}
         </div>
     )
 

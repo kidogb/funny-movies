@@ -5,13 +5,12 @@ import style from './videoDetails.module.css';
 import 'antd/dist/antd.css';
 
 const { Text, Paragraph } = Typography;
-export function VideoDetail({ user, videoDetails }) {
-    console.log(user);
+export function VideoDetail({ videoDetails = {} }) {
     return (
         <div id="video-details" className={style.video}>
             <Row style={{ width: '80%' }}>
                 <Col span={16}>
-                    <ReactPlayer url="https://www.youtube.com/watch?v=S0kk7ZEbCzI" controls />
+                    <ReactPlayer url={videoDetails.url} controls />
                 </Col>
 
                 <Col span={8}>
@@ -19,13 +18,12 @@ export function VideoDetail({ user, videoDetails }) {
                         <Text type="danger" strong>{videoDetails.title}</Text>
                     </Row>
                     <Row>
-                        <Text >Shared by <b>{user.userName}</b></Text>
+                        <Text >Shared by <b>{videoDetails.username}</b></Text>
                     </Row>
                     <Row>
                         <Paragraph ellipsis={{
                             rows: 5,
-                            expandable:true,
-                        }}>{videoDetails.descriptions}</Paragraph>
+                        }}>{videoDetails.description}</Paragraph>
                     </Row>
                 </Col>
             </Row>

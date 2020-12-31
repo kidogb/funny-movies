@@ -18,15 +18,12 @@ const tailLayout = {
     },
 };
 
-export function ShareForm() {
+export function ShareForm({ onShareSubmit = () => { } }) {
 
     const onFinish = (values) => {
-        console.log('Success:', values);
+        onShareSubmit(values);
     };
 
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-    };
 
     return (
         <Form
@@ -36,7 +33,6 @@ export function ShareForm() {
                 remember: true,
             }}
             onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
         >
             <Form.Item
                 label="Youtube URL"
@@ -49,6 +45,32 @@ export function ShareForm() {
                 ]}
             >
                 <Input />
+            </Form.Item>
+
+            <Form.Item
+                label="Title"
+                name="title"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input movie title!',
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+
+            <Form.Item
+                label="Description"
+                name="description"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input movie descriptions!',
+                    },
+                ]}
+            >
+                <Input.TextArea />
             </Form.Item>
 
             <Form.Item {...tailLayout}>
