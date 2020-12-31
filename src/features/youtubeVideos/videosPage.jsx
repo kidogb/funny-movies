@@ -11,7 +11,7 @@ export function VideosPage() {
 
     useEffect(() => {
         dispatch(fetchVideoAsync({ page: 0 }));
-    });
+    }, []);
 
     const onPageChange = (page) => {
         dispatch(fetchVideoAsync({ page: page - 1 }));
