@@ -32,7 +32,7 @@ router.post('/login', function (req, res) {
                         data
                     });
                 } else {
-                    res.status(401).send({
+                    res.status(200).send({
                         status: 401,
                         message: 'Login failed! Wrong password!'
                     });

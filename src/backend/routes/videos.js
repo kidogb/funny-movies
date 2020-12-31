@@ -33,7 +33,7 @@ router.get('/list', function (req, res) {
                 });
             }
             else {
-                res.status(400).send({
+                res.status(200).send({
                     status: 400,
                     message: `Queried page ' ${page} + ' is >= to maximum page number ' ${totalPage}`
                 });
